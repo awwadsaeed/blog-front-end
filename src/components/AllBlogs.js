@@ -22,13 +22,14 @@ export class AllBlogs extends Component {
         socket.on('connect', () => {
             socket.emit('join');
             socket.emit('read');
-            console.log('asdfasfd');
             socket.on('blogs', (payload) => {
-                console.log(payload);
                     this.setState({
                     showBlogs: true,
                     blogs: payload,
                 })
+            })
+            socket.on('newBlog',(payload)=>{
+                console.log(payload);
             })
         })
     }
@@ -49,8 +50,8 @@ export class AllBlogs extends Component {
         return (
             <>
                 <BForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
-                {this.state.showBlogs && this.state.blogs.map((element) => {
-                    return (<Blog info={element} />)
+                {this.state.blogs.map((element) => {
+                    return (<Blog info={element} key={element._id} />)
                 })}
             </>
         )
