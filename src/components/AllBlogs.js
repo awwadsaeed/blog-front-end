@@ -5,7 +5,6 @@ import BForm from './BForm';
 import Alert from 'react-bootstrap/Alert';
 require('dotenv').config();
 const server = process.env.REACT_APP_SERVER_URL;
-
 const socket = io(server, { transports: ['websocket'] })
 export class AllBlogs extends Component {
     constructor(props) {
@@ -15,14 +14,11 @@ export class AllBlogs extends Component {
             blogger: '',
             blogs: [],
             content: '',
-            showBlogs: false,
             showAlert: false,
             notifName: '',
             password: '',
         }
     }
-
-
     componentDidMount() {
         const blogger = prompt('care to share you lovely name?');
         const password = prompt('user password');
@@ -31,22 +27,23 @@ export class AllBlogs extends Component {
             password: password,
         });
         socket.on('connect', () => {
-            socket.emit('join');
+            socket.emit('join', { name: blogger, password: password });
             socket.emit('read');
             socket.on('blogs', (payload) => {
+                // console.log(payload);
                 this.setState({
-                    showBlogs: true,
                     blogs: payload,
                 });
             });
             socket.on('newBlog', (payload) => {
-                console.log(payload);
                 this.setState({
                     notifName: payload,
                     showAlert: true,
                 });
-
             });
+            socket.on('error',(payload)=>{
+                alert(`${payload}`);
+            })
         });
     }
     handleChange = (e) => {
@@ -56,21 +53,18 @@ export class AllBlogs extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        socket.emit('write', { blogger: this.state.blogger, content: this.state.content,pass:this.state.password });
-        this.setState({
-            showBlogs: true,
-        });
+        socket.emit('write', { blogger: this.state.blogger, content: this.state.content, password: this.state.password });
     }
-    delete=(id)=>{
-        const payload={
-            id:id,
-            blogger:this.state.blogger,
-            pass:this.state.password
+    delete = (id) => {
+        const payload = {
+            id: id,
+            blogger: this.state.blogger,
+            password: this.state.password
         }
-        socket.emit('delete',payload)
+        socket.emit('delete', payload)
     }
-
     render() {
+        // console.log(this.state.blogs);
         return (
             <>
                 {this.state.showAlert && <Alert variant="danger" onClose={() => this.setState({ showAlert: false })} dismissible>
@@ -87,5 +81,4 @@ export class AllBlogs extends Component {
         )
     }
 }
-
 export default AllBlogs;
