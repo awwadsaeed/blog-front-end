@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import io from 'socket.io-client';
 import Blog from './Blog';
 import BForm from './BForm';
-import Alert from 'react-bootstrap/Alert';
+import 'react-notifications/lib/notifications.css';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 require('dotenv').config();
 const server = process.env.REACT_APP_SERVER_URL;
 const socket = io(server, { transports: ['websocket'] })
@@ -14,10 +15,9 @@ export class AllBlogs extends Component {
             blogger: '',
             blogs: [],
             content: '',
-            showAlert: false,
-            notifName: '',
             password: '',
-            comment: ''
+            comment: '',
+            updateContent:''
         }
     }
     componentDidMount() {
@@ -36,13 +36,20 @@ export class AllBlogs extends Component {
                 });
             });
             socket.on('newBlog', (payload) => {
-                this.setState({
-                    notifName: payload,
-                    showAlert: true,
-                });
+                NotificationManager.info(`${payload} has posted a new blog`);
             });
             socket.on('error', (payload) => {
-                alert(`${payload}`);
+                NotificationManager.error(`you cant delete this one`);
+            })
+            socket.on('newComment',(payload)=>{
+                if(this.state.blogger==payload.blogger){
+                    NotificationManager.info(`${payload.commenter} has commented on your blog`);
+                }
+            })
+            socket.on('newLike',(payload)=>{
+                if(this.state.blogger==payload.blogger){
+                    NotificationManager.info(`${payload.reader} has liked your blog`);
+                }
             })
         });
     }
@@ -54,6 +61,7 @@ export class AllBlogs extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         socket.emit('write', { blogger: this.state.blogger, content: this.state.content, password: this.state.password });
+        
     }
     delete = (id) => {
         const payload = {
@@ -77,20 +85,42 @@ export class AllBlogs extends Component {
         }
         socket.emit('comments', payload)
     }
+    like=(id)=>{
+        const payload={
+            id:id,
+            user:this.state.blogger,
+        }
+        socket.emit('like',payload);
+    }
+    handleUpdate=(e)=>{
+        this.setState({
+            updateContent:e.target.value,
+        })
+    }
+    update=(e,id)=>{
+        console.log(id);
+        e.preventDefault();
+            const payload={
+            id:id,
+            content:this.state.updateContent
+        }
+        socket.emit('updateBlog',payload);
+    }
 
     render() {
         // console.log(this.state.blogs);
         return (
             <>
-                {this.state.showAlert && <Alert variant="danger" onClose={() => this.setState({ showAlert: false })} dismissible>
+             <NotificationContainer/>
+                {/* {this.state.showAlert && <Alert variant="danger" onClose={() => this.setState({ showAlert: false })} dismissible>
                     <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
                     <p>
                         {`${this.state.notifName} has posted a new Blog`}
                     </p>
-                </Alert>}
+                </Alert>} */}
                 <BForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
                 {this.state.blogs.map((element) => {
-                    return (<Blog info={element} delete={this.delete} handleComment={this.handleComment} comment={this.comment} id={this.state.revComment} key={element._id} />)
+                    return (<Blog info={element} delete={this.delete} handleComment={this.handleComment} comment={this.comment} id={this.state.revComment} key={element._id} user={this.state.blogger} like={this.like} update={this.update} handleUpdate={this.handleUpdate}/>)
                 })}
             </>
         )
