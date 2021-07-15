@@ -9,7 +9,7 @@ export class BForm extends Component {
                     <input type="text" name="blogger" id="name" onChange={this.props.handleChange} /><br/> */}
                     <label for="content">blog here:</label><br/>
                     <input type="text" name="content" id="text" onChange={this.props.handleChange} />
-                    <input type="submit" />
+                    <input type="submit"/>
                 </form>
             </>
         )
