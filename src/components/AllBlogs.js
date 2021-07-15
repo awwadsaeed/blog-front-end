@@ -17,6 +17,7 @@ export class AllBlogs extends Component {
             showAlert: false,
             notifName: '',
             password: '',
+            comment: ''
         }
     }
     componentDidMount() {
@@ -30,7 +31,6 @@ export class AllBlogs extends Component {
             socket.emit('join', { name: blogger, password: password });
             socket.emit('read');
             socket.on('blogs', (payload) => {
-                // console.log(payload);
                 this.setState({
                     blogs: payload,
                 });
@@ -41,7 +41,7 @@ export class AllBlogs extends Component {
                     showAlert: true,
                 });
             });
-            socket.on('error',(payload)=>{
+            socket.on('error', (payload) => {
                 alert(`${payload}`);
             })
         });
@@ -63,6 +63,21 @@ export class AllBlogs extends Component {
         }
         socket.emit('delete', payload)
     }
+    handleComment = (e) => {
+        this.setState({
+            comment: e.target.value
+        });
+    }
+    comment = (e, id) => {
+        e.preventDefault();
+        const payload = {
+            id: id,
+            comment: this.state.comment,
+            commenter: this.state.blogger
+        }
+        socket.emit('comments', payload)
+    }
+
     render() {
         // console.log(this.state.blogs);
         return (
@@ -75,7 +90,7 @@ export class AllBlogs extends Component {
                 </Alert>}
                 <BForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
                 {this.state.blogs.map((element) => {
-                    return (<Blog info={element} delete={this.delete} key={element._id} />)
+                    return (<Blog info={element} delete={this.delete} handleComment={this.handleComment} comment={this.comment} id={this.state.revComment} key={element._id} />)
                 })}
             </>
         )
