@@ -4,9 +4,11 @@ import Blog from './Blog';
 import BForm from './BForm';
 import 'react-notifications/lib/notifications.css';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
+import User from './User'; 
 require('dotenv').config();
 const server = process.env.REACT_APP_SERVER_URL;
 const socket = io(server, { transports: ['websocket'] })
+
 export class AllBlogs extends Component {
     constructor(props) {
         super(props);
@@ -111,6 +113,11 @@ export class AllBlogs extends Component {
         // console.log(this.state.blogs);
         return (
             <>
+            {<User
+                data = {this.state.blogs}
+                name = {this.state.blogger}
+                thumb = {this.state.blogger.toUpperCase()}
+            />}
              <NotificationContainer/>
                 {/* {this.state.showAlert && <Alert variant="danger" onClose={() => this.setState({ showAlert: false })} dismissible>
                     <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
