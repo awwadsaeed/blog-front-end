@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 export class Comment extends Component {
     submit=(e)=>{
@@ -8,10 +10,18 @@ export class Comment extends Component {
     render() {
         return (
             <>
-                <form onSubmit={this.submit}>
+                {/* <form onSubmit={this.submit}>
                     <input type="text" name="comment" placeholder="comment..." required onChange={(e) => this.props.handleComment(e)} />
                     <input type="submit" value="comment" />
-                </form>
+                </form> */}
+                <Form onSubmit={this.submit}>
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                        <Form.Control onChange={(e) => this.props.handleComment(e)} as="textarea" rows={1} type="text" placeholder="comment here..." />
+                    </Form.Group>
+                    <Button variant="primary" type="submit">
+                        comment
+                    </Button>
+                </Form>
             </>
         )
     }
