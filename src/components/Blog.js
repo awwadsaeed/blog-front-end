@@ -72,7 +72,7 @@ export class Blog extends Component {
                             {(this.props.user == this.props.info.blogger && this.props.info.password == this.props.pass) &&
                                 <FaRegEdit className="iconic" onClick={() => this.setState({ showUpdateForm: !this.state.showUpdateForm })} />
                             }
-                            {(this.props.info.comments.length !== 0) && <FcComments onClick={this.showHideComment} />}
+                            {(this.props.info.comments.length !== 0) && <FcComments className="iconic" onClick={this.showHideComment} />}
                             {(this.props.user !== this.props.info.blogger) &&
                                 <>
                                     {!this.state.like &&
@@ -103,9 +103,9 @@ export class Blog extends Component {
                     return (
                         <div className="commentBox">
                         <Card border="secondary" style={{ width: '80%' }}>
-                            <Card.Header>{comment.commenter} on {comment.date}</Card.Header>
+                            <Card.Header className="commentSuff">{comment.commenter} on {comment.date}</Card.Header>
                             <Card.Body >
-                                <Card.Text >
+                                <Card.Text className="commentSuff" >
                                     {comment.comment}
                                 </Card.Text>
                             </Card.Body>

@@ -7,7 +7,7 @@
     --user-background-color:whitesmoke;
     --font-color:black;
     --border-color:lightgrey;
-    --input-background-color:white
+    --input-background-color:white;
 }
 .allBlogs{
     margin-top: 11px;
@@ -43,11 +43,14 @@
     width: 10%;
     justify-content: space-around;
 }
-
+.commentSuff{
+    color:var( --content-color)
+}
 .commentField{
     width: 87% !important;
     border: none !important;
     background-color: var(--input-background-color) !important;
+  
 }
 .commentGroup{
     position: relative;

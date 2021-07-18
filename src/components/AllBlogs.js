@@ -69,7 +69,7 @@ export class AllBlogs extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         socket.emit('write', { blogger: this.state.blogger, content: this.state.content, password: this.state.password });
-
+        document.getElementById('Bform').value='';
     }
     delete = (id) => {
         const payload = {
@@ -91,7 +91,8 @@ export class AllBlogs extends Component {
             comment: this.state.comment,
             commenter: this.state.blogger
         }
-        socket.emit('comments', payload)
+        socket.emit('comments', payload);
+        document.getElementById('commentInput').value='';
     }
     like = (id) => {
         const payload = {
@@ -106,7 +107,6 @@ export class AllBlogs extends Component {
         })
     }
     update = (e, id) => {
-
         e.preventDefault();
         const payload = {
             blogger: this.state.blogger,
@@ -115,6 +115,7 @@ export class AllBlogs extends Component {
             content: this.state.updateContent
         }
         socket.emit('updateBlog', payload);
+        document.getElementById('updateForm').value='';
     }
 
     render() {
