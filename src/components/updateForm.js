@@ -19,7 +19,7 @@ export class UpdateForm extends Component {
                 <Form onSubmit={(e)=>this.update(e)}>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                         <Form.Label>Edit Blog</Form.Label>
-                        <Form.Control className="inputs" onChange={(e) => { this.handleUpdate(e) }} as="textarea" rows={3} type="text" placeholder="Edit Version in here" />
+                        <Form.Control id="updateForm" className="inputs" onChange={(e) => { this.handleUpdate(e) }} as="textarea" rows={3} type="text" placeholder="Edit Version in here" />
                     </Form.Group>
                     <Button className="Button" variant="primary" type="submit">
                         Update Blog

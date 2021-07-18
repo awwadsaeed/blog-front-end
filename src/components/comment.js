@@ -12,7 +12,7 @@ export class Comment extends Component {
             <div>
                 <Form onSubmit={this.submit}>
                     <Form.Group className="mb-3 commentGroup" controlId="exampleForm.ControlTextarea1">
-                        <Form.Control  onChange={(e) => this.props.handleComment(e)} as="textarea" rows={1} type="text" placeholder="comment here..." className="commentField" required/>
+                        <Form.Control id="commentInput"  onChange={(e) => this.props.handleComment(e)} as="textarea" rows={1} type="text" placeholder="comment here..." className="commentField" required/>
                     <Button variant="primary" type="submit" className="commentButton">
                         comment
                     </Button>
