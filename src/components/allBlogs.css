@@ -1,0 +1,108 @@
+:root{
+    --blog-background-color:#bddcec;
+    --button-background-color:#1b8aca;
+    --blog-header-color:black;
+    --content-color:black;
+    --blogPage-background-color:whitesmoke;
+    --user-background-color:whitesmoke;
+    --font-color:black;
+    --border-color:lightgrey;
+    --input-background-color:white
+}
+.allBlogs{
+    margin-top: 11px;
+    width: 60%;
+    display: inline-block;
+    border: var( --border-color) 1px;
+    border-style: solid;
+}
+.BForm{
+    box-sizing: border-box;
+    margin:1%;
+    padding: 10px;
+    color: var(--blog-header-color);
+
+}
+.blog{
+    margin: 1%;
+    border: whitesmoke 1px ;
+    border-style: solid;
+    background-color:var(--blog-background-color);
+    border-radius: 5px;
+    color:var(--font-color);
+  
+}
+.content{
+    background-color: var(--blog-background-color);
+    color:var(--font-color);
+    
+}
+.tools{
+    float: right;
+    display: flex;
+    width: 10%;
+    justify-content: space-around;
+}
+
+.commentField{
+    width: 87% !important;
+    border: none !important;
+    background-color: var(--input-background-color) !important;
+}
+.commentGroup{
+    position: relative;
+}
+.commentButton{
+    background-color:var(--button-background-color) !important;
+    border: var(--button-background-color) 1px !important;
+    border-style: solid !important;
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    width: 13%;
+}
+.Button{
+    background-color:var(--button-background-color) !important;
+    border: var(--button-background-color) 1px !important;
+    border-style: solid !important;
+}
+.blogCard{
+    border: none !important;
+    background-color:  var(--blog-background-color) !important;
+    color: var(--blog-header-color);
+}
+.themSwitch{
+    float: right;
+    margin-left:1% ;
+    margin-top:1%;
+}
+
+
+.userInfo{
+    float: left;
+    width:18%;
+    margin: 0.7%;
+    height: 254px;
+    background-color: var( --user-background-color) !important;
+    color: var(--font-color);
+    border: var(--border-color) 1px !important;
+    border-style: solid !important;
+}
+
+.blogPage{
+    box-sizing: border-box;
+    padding: 2%;
+    background-color: var(--blogPage-background-color); 
+}
+
+.commentBox{
+    margin-left:0;
+    margin-bottom:10px;
+    width: 80%;
+}
+.inputs{
+    background-color: var(--input-background-color) !important;
+}
+.iconic:hover{
+    cursor: pointer;
+}
