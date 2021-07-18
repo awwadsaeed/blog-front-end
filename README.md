@@ -1,75 +1,79 @@
-# Getting Started with Create React App
+# Blog APP v.1.0 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Author : Hatem Husnieh & Saeed Awwad  
 
-## Available Scripts
+## The Application  
+This application allows users to share their thoughts and knowledge with bothers in real time, and express their thought on other blogs in the form of comments and likes.
 
-In the project directory, you can run:
+## Technologies  
+* Node.js
+* Socket io
+* express
+* react.
+* heroku (back-end deployment)
+* netlify (front-end deployment)
+* mongo atlas (mongoDB server)  
 
-### `npm start`
+## install  
+1. copy the link of backend/front end repos.
+1. clone both repos on your local machine by `git clone repos-url`
+1. download independencies by `npm i`
+1. create a `.env`, then cope the content of `.env.sample` file inside the `.env` file.
+1. fill the variables of `.env`
+1. run the app
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Try it
+- [deployed Front-End link](https://60f38c398cfedbcd1d652377--wonderful-northcutt-a044f7.netlify.app/)
+- [deployed Back-End link](https://hatem-saeed-blog-backend.herokuapp.com/)
+- [front-end-repo](https://github.com/awwadsaeed/blog-front-end.git)
+- [back-end-repo](https://github.com/Hatemhusnieh/blog-backend.git)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Setup  
+#### `.env` requirement for Back-End
+  - `PORT` - port number  
+  - `MONGODB_URL` - port number
+#### `.env` requirement for Front-End
+  - `REACT_APP_SERVER_URL` - port number   
 
-### `npm test`
+#### Running the app on local devices  
+- Back-End side:  
+  - Connect to mongo-DB : `sudo service mongodb start`.
+  - Start the server : `npm start` or `nodemon`.
+- Front-End side:  
+  - start the app: `npm start`.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Using the APP  
+-  Enter your user name and password through the prompt command:  
+  ![name](resources/name.png)  
+  ![pass](resources/pass.png)  
 
-### `npm run build`
+    - Output: The opening page of the app where all the blogs by other users are posted:  
+  ![opening](resources/open.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- To create a blog, start typing in the blog box what is on your mind and hit the `Post` button to post it and share it with other users.  
+  ![post](resources/post.png)  
   
-  sd
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)  
+  - Output: You blog wll posted as the newest blog at the billboard.  
+    ![billboard](resources/bill.png)  
 
-# HTM
+- If any user either commented on your blog or like it, a notification will appear on the right of screen telling what change has happened.
+  ![noti](resources/noti1.png)
+  ![noti](resources/noti2.png)  
+
+- After a user has commented on you blog, a new button will appear on the right upper corner of your blog that allows you to see the comments on your blog or hides then.  
+  ![comment](resources/comment.png)  
+  ![comment2](resources/comment2.png)  
+
+- To like other users blogs scroll to their blog and hit the like button:  
+  ![like](resources/like.png)
+  ![like2](resources/like2.png)  
+
+- To edit your blog choose the edit button, after that a box will appear allowing you to edit your blog:  
+  ![edit](resources/edit.png)
+
+- You can change the theme of the application by hitting the `theme button` at `user card`  
+  ![them-button](resources/theme.png)  
+  ![dark-theme](resources/dark.png)  
+
+### UML:  
+![uml](resources/uml.jpg)
