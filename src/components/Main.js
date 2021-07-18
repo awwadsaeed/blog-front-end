@@ -4,11 +4,12 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import AllBlogs from './AllBlogs';
 import Aboutus from './Aboutus';
 import Header from './Header';
+import './allBlogs.css';
 export class Main extends Component {
     render() {
         return (
             <>
-                        <Header/>
+                <Header />
                 <Router>
                     <Switch>
                         <Route exact path="/" component={AllBlogs} />
